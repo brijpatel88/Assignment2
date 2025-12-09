@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Coffee",
+    "image": "coffee",
+    "shortDesc": "Fresh brewed coffee",
+    "price": 2.0,
+    "type": "COFFEE"
+  },
+  {
+    "id": 2,
+    "name": "Latte",
+    "image": "latte",
+    "shortDesc": "Espresso with steamed milk",
+    "price": 3.5,
+    "type": "LATTE"
+  },
+  {
+    "id": 3,
+    "name": "Tea",
+    "image": "tea",
+    "shortDesc": "Hot steeped tea",
+    "price": 1.75,
+    "type": "TEA"
+  }
+]
