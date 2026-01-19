@@ -16,6 +16,18 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // ✅ Read Stripe key from gradle.properties
+        val stripeKey = providers
+            .gradleProperty("STRIPE_PUBLISHABLE_KEY")
+            .orNull
+            ?: ""
+
+        buildConfigField(
+            "String",
+            "STRIPE_PUBLISHABLE_KEY",
+            "\"$stripeKey\""
+        )
     }
 
     buildTypes {
@@ -39,9 +51,9 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
-    // ✅ Correct, stable, compatible compiler for Compose BOM 2024.10.01
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
     }
@@ -49,21 +61,21 @@ android {
 
 dependencies {
 
-    // Core Android + Compose essentials
+    // Core Android + Compose
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
-    // ✅ UPDATED to the correct BOM version that matches compiler 1.5.10
+    // Compose BOM
     implementation(platform("androidx.compose:compose-bom:2024.10.01"))
 
-    // Compose UI
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     // Material 3
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended")
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.0")
@@ -71,12 +83,21 @@ dependencies {
     // Foundation
     implementation("androidx.compose.foundation:foundation")
 
+    // Networking
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+
+    // Stripe
+    implementation("com.stripe:stripe-android:20.51.0")
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    // Use SAME BOM for test
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.10.01"))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.test.manifest)

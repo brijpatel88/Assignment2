@@ -3,49 +3,69 @@ package com.assignment2.coffeeapp.data
 import androidx.compose.runtime.mutableStateListOf
 
 /**
- * CartManager
- * Manages all cart CRUD operations and live totals.
- * Uses Compose state so the UI auto-updates.
+ * Central cart state holder
+ * Uses Compose-friendly state list
  */
 object CartManager {
 
-    // Reactive list — UI updates automatically
+    // 🔥 Reactive cart list (Compose observes this automatically)
     private val _items = mutableStateListOf<CartItem>()
 
-    // Public read-only list
+    // Read-only access for UI
     val items: List<CartItem>
         get() = _items
 
-    // CREATE — Add an item to the cart
+    /**
+     * ADD item to cart
+     */
     fun addToCart(item: CartItem) {
         _items.add(item)
     }
 
-    // UPDATE — Change quantity of an item
-    fun updateQuantity(item: CartItem, qty: Int) {
+    /**
+     * UPDATE quantity of an item
+     * Replaces item instead of mutating (important for Compose)
+     */
+    fun updateQuantity(item: CartItem, newQty: Int) {
         val index = _items.indexOf(item)
-        if (index != -1) {
-            _items[index] = _items[index].copy(quantity = qty)
+
+        if (index != -1 && newQty > 0) {
+            _items[index] = item.copy(quantity = newQty)
         }
     }
 
-    // DELETE — Remove item
+    /**
+     * REMOVE item from cart
+     */
     fun removeItem(item: CartItem) {
         _items.remove(item)
     }
 
-    // CLEAR — Empty the whole cart
-    fun clearCart() = _items.clear()
+    /**
+     * CLEAR entire cart
+     */
+    fun clearCart() {
+        _items.clear()
+    }
 
-    // SUBTOTAL
-    fun getSubtotal(): Double =
-        _items.sumOf { it.itemTotal() }
+    /**
+     * SUBTOTAL (before tax)
+     */
+    fun getSubtotal(): Double {
+        return _items.sumOf { it.itemTotal() }
+    }
 
-    // TAX (14%)
-    fun getTax(): Double =
-        getSubtotal() * 0.14
+    /**
+     * TAX calculation (14%)
+     */
+    fun getTax(): Double {
+        return getSubtotal() * 0.14
+    }
 
-    // TOTAL = subtotal + tax
-    fun getTotal(): Double =
-        getSubtotal() + getTax()
+    /**
+     * FINAL TOTAL
+     */
+    fun getTotal(): Double {
+        return getSubtotal() + getTax()
+    }
 }
