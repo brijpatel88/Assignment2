@@ -22,21 +22,42 @@ https://youtube.com/shorts/lYteEbKk_TE
 
 ## 📱 App Screenshots
 
-| Home | Menu | Details |
-|------|------|---------|
-| ![](C1.jpeg) | ![](C2.jpeg) | ![](C3.jpeg) |
+### 🏠 Home Screen
+![Home Screen](screenshots/C1.png)
 
-| Cart | Payment | Stripe |
-|------|--------|--------|
-| ![](C4.jpeg) | ![](C5.jpeg) | ![](C6.jpeg) |
+### ☕ Drink Categories
+![Drink Categories](screenshots/C2.png)
 
-| Thank You | Favorites | Order History |
-|-----------|-----------|---------------|
-| ![](C7.jpeg) | ![](C8.jpeg) | ![](C9.jpeg) |
+### 📋 Drink Menu
+![Drink Menu](screenshots/C3.png)
 
-| Profile |
-|---------|
-| ![](C10.jpeg) |
+### 🧩 Drink Customization
+![Drink Details](screenshots/C4.png)
+
+### ❤️ Favorites
+![Favorites](screenshots/C5.png)
+
+### 🛒 Cart Screen
+![Cart](screenshots/C6.png)
+
+### 🧾 Review Order
+![Review Order](screenshots/C7.png)
+
+### 💳 Payment Screen
+![Payment](screenshots/C8.png)
+
+### ✅ Thank You Screen
+![Thank You](screenshots/C9.png)
+
+### 📜 Order History
+![Order History](screenshots/C10.png)
+
+## 🧪 Stripe Test Card
+
+Use the following test card for payment:
+Card Number: 4242 4242 4242 4242
+Expiry Date: Any future date
+CVV: Any 3 digits
 
 ---
 
